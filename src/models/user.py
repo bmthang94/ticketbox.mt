@@ -1,4 +1,5 @@
 from src import db
+from flask import render_template
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 import requests
@@ -22,10 +23,11 @@ class User(UserMixin, db.Model):
     def send_password_reset_email(self, token):
         apikey = "get-this-from-mailgun"
         domain_name = "get-this-from-mailgun"
+        print(render_template('email.html', token=token))
         requests.post(
             "https://api.mailgun.net/v3/" + domain_name + "/messages",
             auth=("api", apikey),
             data={"from": "ticketbox.mt@" + domain_name,
                   "to": [self.email],
                   "subject": "Reset password",
-                  "text": f"Go to http://localhost:5000/new_password/{token}."})
+                  "html": render_template('email.html', token=token)})

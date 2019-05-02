@@ -92,4 +92,5 @@ def new_password(token):
         if user is not None:
             user.set_password(user_password)
             db.session.commit()
+            return redirect(url_for('/.homepage'))
     return render_template('new_password.html', form=form)
