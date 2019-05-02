@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block content %}
+{% if current_user.username %}
+{{ current_user.username}} | <a href="/signout">Sign Out</a>
+{% else %}
+<a href="/signup">Sign Up</a> | <a href="/signin">Sign In</a>
+
+{% endif %}
+
+<h1>This is homepage</h1>
+{% endblock %}

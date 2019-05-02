@@ -35,3 +35,7 @@ from src.models.categories import Category
 migrate = Migrate(app, db)
 from src.components.events.views import events_blueprint
 app.register_blueprint(events_blueprint, url_prefix="/events")
+
+migrate = Migrate(app, db)
+from src.components.home.views import events_blueprint
+app.register_blueprint(events_blueprint, url_prefix="/")

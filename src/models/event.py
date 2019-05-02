@@ -5,7 +5,7 @@ from src.models.helpertable import event_categories, event_organizer, event_venu
 class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(), nullable=False)
-    start_time = db.Column(db.DateTime, nullable=False)
+    start_time = db.Column(db.DateTime)
     end_time = db.Column(db.DateTime, nullable=False)
     description = db.Column(db.String(), nullable=False)
     image_id = db.Column(db.Integer, db.ForeignKey('image.id'))

@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SelectField, PasswordField, BooleanField, SubmitField, ValidationError
+from wtforms import StringField, SelectField, SubmitField, ValidationError
 from wtforms.validators import DataRequired, Email
 import phonenumbers
 from wtforms_components import DateTimeField
@@ -19,10 +19,9 @@ def validate_organizer_phone(FlaskForm, field):
             raise ValidationError('Invalid phone number.')
             
 class EventInfo(FlaskForm):
-    
     event_name = StringField('Event name', validators=[DataRequired()])
-    event_start_time = StringField('Start',validators=[DataRequired()])
-    event_end_time = StringField('End', validators=[DataRequired()])
+    # event_start_time = StringField('Start',validators=[DataRequired()])
+    # event_end_time = StringField('End', validators=[DataRequired()])
     event_description = StringField(
         'Event informaiton', validators=[DataRequired()])
     venue_name = StringField('Venue name ', validators=[DataRequired()])
@@ -37,3 +36,14 @@ class EventInfo(FlaskForm):
     # categories = StringField('Categories', validators=[DataRequired()])
     categories = SelectField('Category: ',  coerce=int)
     submit = SubmitField('Create')
+
+        
+class TicketType(FlaskForm):
+    ticket_name = StringField('Ticket name', validators=[DataRequired()])
+    ticket_open_at = StringField('Start',validators=[DataRequired()])
+    ticket_expires_at = StringField('End', validators=[DataRequired()])
+    ticket_description = StringField(
+        'Ticket information', validators=[DataRequired()])
+    price = StringField('Price ', validators=[DataRequired()])
+    quota = StringField('Quota ', validators=[DataRequired()])
+    submit = SubmitField('Add')

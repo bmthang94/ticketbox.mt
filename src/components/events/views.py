@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request
 from src.models.EventInfoForm import EventInfo
-from src.models.EventInfoForm import EventInfo
+from src.models.EventInfoForm import TicketType
 from src.models.event import Event
 from src.models.venue import Venue
 from src.models.organizer import Organizer
@@ -13,8 +13,8 @@ events_blueprint = Blueprint('events',
                              template_folder='../../templates/events')
 
 
-@events_blueprint.route('/add', methods=['GET', 'POST'])
-def add():
+@events_blueprint.route('/add/info', methods=['GET', 'POST'])
+def addInfo():
     form = EventInfo()
     categories = Category.query.all()
     form.categories.choices = [(cat.id, cat.name) for cat in categories]
@@ -39,17 +39,16 @@ def add():
         ]
         db.session.bulk_save_objects(multiRow)
         db.session.commit()
-        print(form.event_start_time.data)
         event = Event(
             name=form.event_name.data,
+            # # start_time=datetime.strptime(
+            # #     "2019-02-02 10:00", '%Y-%m-%d %H:%M'),
+            # # end_time=datetime.strptime(
+            # #     "2019-02-02 10:00", '%Y-%m-%d %H:%M'),
             # start_time=datetime.strptime(
-            #     "2019-02-02 10:00", '%Y-%m-%d %H:%M'),
+            #     form.event_start_time.data, '%Y-%m-%d %H:%M'),
             # end_time=datetime.strptime(
-            #     "2019-02-02 10:00", '%Y-%m-%d %H:%M'),
-            start_time=datetime.strptime(
-                form.event_start_time.data, '%Y-%m-%d %H:%M'),
-            end_time=datetime.strptime(
-                form.event_end_time.data, '%Y-%m-%d %H:%M'),
+            #     form.event_end_time.data, '%Y-%m-%d %H:%M'),
             description=form.event_description.data
         )
         event.organizer.append(organizer)
@@ -66,6 +65,16 @@ def add():
         }
     )
 
+
+@events_blueprint.route('/add/ticket', methods=['GET', 'POST'])
+def addTicket():
+    
+    return render_template('createEvent.html', 
+    vars={
+        "form": form,
+        "customField": 4,
+        }
+    )
 
 @events_blueprint.route('/list')
 def list():
