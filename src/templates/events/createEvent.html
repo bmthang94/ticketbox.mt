@@ -1,0 +1,90 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <form method="POST">
+            {{ vars["form"].hidden_tag() }}
+            <div class="form-group">
+                <label for="event_name"> {{  vars["form"].event_name.label }}</label>
+                {{  vars['form'].event_name() }}
+                {% for error in  vars['form'].event_name.errors %}
+                <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div class="form-group" id="start_time">
+                <label for="event_start_time"> {{ vars["form"].event_start_time.label }}</label>
+                {{ vars["form"].event_start_time() }}
+                {% for error in vars["form"].event_start_time.errors %}
+                <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div class="form-group" id="end_time">
+                <label for="event_end_time"> {{ vars["form"].event_end_time.label }}</label>
+                {{ vars["form"].event_end_time() }}
+                {% for error in vars["form"].event_end_time.errors %}
+                <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                <label for="event_description"> {{ vars["form"].event_description.label }}</label>
+                {{ vars["form"].event_description() }}
+                {% for error in vars["form"].event_description.errors %}
+                <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                <label for="categories"> {{ vars["form"].categories.label }}</label>
+                {{ vars["form"].categories() }}
+                {% for error in vars["form"].categories.errors %}
+                <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                <label for="venue_name"> {{ vars["form"].venue_name.label }} </label>
+                {{ vars["form"].venue_name() }}
+                {% for error in vars["form"].venue_name.errors %}
+                <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                <label for="venue_name"> {{ vars["form"].venue_address.label }} </label>
+                {{ vars["form"].venue_address() }}
+                {% for error in vars["form"].venue_address.errors %}
+                <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                <label for="organizer_name"> {{ vars["form"].organizer_name.label }}</label>
+                {{ vars["form"].organizer_name() }}
+                {% for error in vars["form"].organizer_name.errors %}
+                <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                <label for="organizer_description"> {{ vars["form"].organizer_description.label }}</label>
+                {{ vars["form"].organizer_description() }}
+                {% for error in vars["form"].organizer_description.errors %}
+                <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                <label for="organizer_email"> {{ vars["form"].organizer_email.label }}</label>
+                {{ vars["form"].organizer_email() }}
+                {% for error in vars["form"].organizer_email.errors %}
+                <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                <label for="organizer_phone"> {{ vars["form"].organizer_phone.label }}</label>
+                {{ vars["form"].organizer_phone() }}
+                {% for error in vars["form"].organizer_phone.errors %}
+                <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                {{ vars["form"].submit() }}
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
